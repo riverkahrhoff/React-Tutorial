@@ -1,30 +1,37 @@
 // a component cannot return more than one element in react
 
-function ListGroup() {
-  let items = ["New York", "London", "San Francisco", "Tokyo", "Paris"];
-  items = [];
-  // const message = items.length === 0 ? <p>No item found</p> : null;
+import { useState } from "react";
 
-  // const getMessage = () => {
-  //   return items.length === 0 ? <p>No item found</p> : null;
-  // };
+interface Props {
+  items: string[];
+  heading: string;
+  onSelectItem: (item: string) => void;
+}
 
-  // if (items.length === 0)
-  //   return (
-  //     <>
-  //       <h1>List</h1>
-  //       <p>No item found</p>
-  //     </>
-  //   );
+function ListGroup({ items, heading, onSelectItem }: Props) {
+  // Hook to tap into built in features in react; this component has data or state that will change over time
+  const [selectedIndex, setSelectedIndex] = useState(-1);
 
   return (
     <>
-      <h1>List</h1>
-      {items.length === 0 ? <p>No item found</p> : null}
+      <h1>{heading}</h1>
       {items.length === 0 && <p>No item found</p>}
       <ul className="list-group">
-        {items.map((item) => (
-          <li key={item}>{item}</li>
+        {items.map((item, index) => (
+          <li
+            className={
+              selectedIndex === index
+                ? "list-group-item active"
+                : "list-group-item"
+            }
+            key={item}
+            onClick={() => {
+              setSelectedIndex(index);
+              onSelectItem(item);
+            }}
+          >
+            {item}
+          </li>
         ))}
       </ul>
     </>
