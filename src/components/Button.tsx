@@ -1,11 +1,9 @@
-import { useState } from "react";
-
 interface Props {
   children: string;
   onClick: () => void;
 }
 
-const Button = ({ children, onClick }: Props) => {
+const PushButton = ({ children, onClick }: Props) => {
   return (
     <div>
       <button className="btn btn-success" onClick={onClick}>
@@ -15,4 +13,4 @@ const Button = ({ children, onClick }: Props) => {
   );
 };
 
-export default Button;
+export default PushButton;
