@@ -14,11 +14,11 @@ const ExpandableText = ({ children }: Props) => {
   return (
     <div>
       <span
-        className="d-inline-block text-truncate"
+        className={`d-inline-block ${open ? "" : "text-truncate"}`}
         style={{
           maxWidth: open ? "none" : "50px",
-          overflow: "hidden",
-          whiteSpace: "nowrap",
+          whiteSpace: open ? "normal" : "nowrap",
+          display: open ? "block" : "inline-block",
         }}
         title={children}
       >
